@@ -1,8 +1,19 @@
-import { makeStyles, Table, TableBody, TableCell, TableRow, Tooltip } from "@material-ui/core";
+import {
+  makeStyles,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Tooltip,
+} from "@material-ui/core";
 import { useState } from "react";
 import Image from "../../components/image/Image";
 import TablePagination from "../../components/tablePagination/TablePagination";
-import { formateNumberPrice, formateNumberPriceDecimals, formaterNumber, twoNumber } from "../../helpers/helpers";
+import {
+  formateNumberPrice,
+  formateNumberPriceDecimals,
+  formaterNumber,
+} from "../../helpers/helpers";
 import TokensHeaderTable from "./TokensHearderTable";
 
 const useStyles = makeStyles((theme) => {
@@ -111,7 +122,13 @@ const useStyles = makeStyles((theme) => {
 });
 
 // Component used for display Tokens table
-const TokensTable = ({ data, textEmpty, size = "ld", sortable = true, onClickToken }) => {
+const TokensTable = ({
+  data,
+  textEmpty,
+  size = "ld",
+  sortable = true,
+  onClickToken,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("liquidity");
@@ -185,7 +202,8 @@ const TokensTable = ({ data, textEmpty, size = "ld", sortable = true, onClickTok
       {
         id: "name",
         cellClasses: size === "xs" ? classes.cellsExtraSmall : classes.cells,
-        classes: size === "xs" ? classes.hCellsExtraSmallName : classes.hCellsLg,
+        classes:
+          size === "xs" ? classes.hCellsExtraSmallName : classes.hCellsLg,
         sortable: sortable,
         disablePadding: false,
         label: "Tokens",
@@ -252,7 +270,8 @@ const TokensTable = ({ data, textEmpty, size = "ld", sortable = true, onClickTok
     return stabilizedThis.map((el) => el[0]);
   };
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
   const headCells = getHeadCells();
   if (data.length === 0)
     return (
@@ -321,7 +340,9 @@ const TokensTable = ({ data, textEmpty, size = "ld", sortable = true, onClickTok
                           </div>
                           <p className={classes.name}>
                             {row.name}
-                            <em className={classes.symbolName}>({row.symbol})</em>
+                            <em className={classes.symbolName}>
+                              ({row.symbol})
+                            </em>
                           </p>
                         </div>
                       </Tooltip>
@@ -337,7 +358,9 @@ const TokensTable = ({ data, textEmpty, size = "ld", sortable = true, onClickTok
                       align={headCell.align}
                       padding={headCell.padding}
                     >
-                      {headCell.transform ? headCell.transform(row[headCell.id]) : row[headCell.id]}
+                      {headCell.transform
+                        ? headCell.transform(row[headCell.id])
+                        : row[headCell.id]}
                     </TableCell>
                   );
                 }
